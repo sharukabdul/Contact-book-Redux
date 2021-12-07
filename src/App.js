@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import Home from './components/Home';
+import reducer from './reducers/reducer';
+
+const initialState = {
+  userDetails: []
+}
+
+const store = createStore(reducer, initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store= {store}>
+        <Home />
+      </Provider>
     </div>
   );
 }
